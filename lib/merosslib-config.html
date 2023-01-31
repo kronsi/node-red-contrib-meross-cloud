@@ -1,0 +1,32 @@
+<script type="text/javascript">
+	RED.nodes.registerType('merosslib-config', {
+		category: 'config',
+		defaults: {
+			name: { value: '' },
+			username: { value: '', required: true },
+            password: { value: '', required: true }
+		},
+		label: function() {
+			return this.name || 'Meross';
+		},
+		oneditsave: function() {
+			
+		}
+	});
+</script>
+
+<script type="text/x-red" data-template-name="merosslib-config">
+	<div class="form-row">
+		<label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-config-input-name" placeholder="Name">
+	</div>
+	<div class="form-row">
+		<label for="node-config-input-username"><i class="fa fa-tag"></i> Username</label>
+		<input type="text" id="node-config-input-username">
+	</div>
+    <div class="form-row">
+		<label for="node-config-input-password"><i class="fa fa-tag"></i> Password</label>
+		<input type="password" id="node-config-input-password">
+	</div>
+</script>
+Footer
