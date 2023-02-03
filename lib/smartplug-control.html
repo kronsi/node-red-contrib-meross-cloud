@@ -5,6 +5,7 @@
 			confignode: { value: '', type: 'merosslib-config' },
 			name: { value: '' },
 			device: { value: '' },
+			action: { value: '' },
 			outputs: { value: 1 },
 			outputLabeleling: {value: "text"}
 		},
@@ -79,6 +80,14 @@
 				})
             }
 			loadConfig(this);
+
+			$("#node-input-action").typedInput({type:"action", types:[{
+				value: "action",
+				options: [
+					{ value: "onoff", label: "Eingeschaltet?"},
+					{ value: "energy", label: "Stromverbrauch"}					
+				]
+			}]})
 			
 		},		
 		paletteLabel: 'Meross Device'
@@ -101,6 +110,10 @@
 		<input type="hidden" id="node-input-outputs"/>
 		<input type="hidden" id="node-input-outputLabeleling" >	
 	</div>	
+	<div class="form-row">
+		<label for="node-input-action"><i class="fa fa-tag"></i> Funktion</label>
+		<input type="text" id="node-input-action">		
+	</div>
 </script>
 
 
