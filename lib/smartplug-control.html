@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	RED.nodes.registerType('meross-device',{
+	RED.nodes.registerType('meross-smartplug',{
 		category: 'MerossCloud',
 		defaults: {	
 			confignode: { value: '', type: 'merosslib-config' },
@@ -15,18 +15,16 @@
 		icon: 'smartplug.png',  // saved in icons/myicon.png
 		color: '#005AFF', 
 		label: function() {
-			return this.name || 'Meross Device';
+			return this.name || 'Meross Smartplug';
 		},
 		outputLabels: function(index){
 			let label = this.outputLabeleling.split(",");
 			return label[index];
 		},
 		oneditprepare: function() {
-			
-			
+						
 			function loadConfig(node) {
-                
-                //console.log('loadConfig()');                
+                                
                 $.ajax({
 					url: "devices/" + node.id,
 					type: "GET",
@@ -84,18 +82,20 @@
 			$("#node-input-action").typedInput({type:"action", types:[{
 				value: "action",
 				options: [
-					{ value: "onoff", label: "Eingeschaltet?"},
-					{ value: "energy", label: "Stromverbrauch"}					
+					{ value: "state", label: "Switch State"},
+					{ value: "energy", label: "Power consumption"},
+					{ value: "on", label: "Switch On"},
+					{ value: "off", label: "Switch Off"},
 				]
 			}]})
 			
 		},		
-		paletteLabel: 'Meross Device'
+		paletteLabel: 'Meross Smartplug'
 	});
 </script>
 
 <!-- Setting design and inputs for node -->
-<script type="text/x-red" data-template-name="meross-device">
+<script type="text/x-red" data-template-name="meross-smartplug">
 	<div class="form-row">
 		<label for="node-input-confignode"> Meross</label>
 		<input type="text" id="node-input-confignode">
@@ -111,7 +111,7 @@
 		<input type="hidden" id="node-input-outputLabeleling" >	
 	</div>	
 	<div class="form-row">
-		<label for="node-input-action"><i class="fa fa-tag"></i> Funktion</label>
+		<label for="node-input-action"><i class="fa fa-tag"></i> Function</label>
 		<input type="text" id="node-input-action">		
 	</div>
 </script>
