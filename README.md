@@ -1,4 +1,4 @@
-# fedex-client
+# node-red-contrib-meross-cloud
 
 library to track, rate or ship something via FedEx Express
 
