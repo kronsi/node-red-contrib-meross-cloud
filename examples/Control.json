@@ -1,0 +1,81 @@
+[
+    {
+        "id": "045dfecc3bb82561",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "30ce5224d7d46631",
+        "type": "inject",
+        "z": "045dfecc3bb82561",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 320,
+        "y": 460,
+        "wires": [
+            [
+                "4cbe0fab4a9a0728"
+            ]
+        ]
+    },
+    {
+        "id": "df2135864aadfcc2",
+        "type": "debug",
+        "z": "045dfecc3bb82561",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "4cbe0fab4a9a0728",
+        "type": "meross-smartplug",
+        "z": "045dfecc3bb82561",
+        "confignode": "7e7d8c9e3e8a14b2",
+        "name": "",
+        "device": "adlkaksdaksdjkasjkdaj2q29929999",
+        "action": "energy",
+        "outputs": 1,
+        "outputLabeleling": "SomeDevice",
+        "x": 610,
+        "y": 540,
+        "wires": [
+            [
+                "df2135864aadfcc2"
+            ]
+        ]
+    },
+    {
+        "id": "7e7d8c9e3e8a14b2",
+        "type": "merosslib-config",
+        "name": "",
+        "username": "",
+        "password": ""
+    }
+]
