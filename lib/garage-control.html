@@ -1,0 +1,122 @@
+<script type="text/javascript">
+	RED.nodes.registerType('meross-garage',{
+		category: 'MerossCloud',
+		defaults: {	
+			confignode: { value: '', type: 'merosslib-config' },
+			name: { value: '' },
+			device: { value: '' },
+			action: { value: '' },
+			outputs: { value: 1 },
+			outputLabeleling: {value: "text"}
+		},
+		inputs: 1,				// set the number of inputs - only 0 or 1
+		outputs: 1,			 // set the number of outputs - 0 to n
+		outputLabels: ["stdout","stderr","rc"],
+		icon: 'switch.png',  // saved in icons/myicon.png
+		color: '#005AFF', 
+		label: function() {
+			return this.name || 'Meross Garage';
+		},
+		outputLabels: function(index){
+			let label = this.outputLabeleling.split(",");
+			return label[index];
+		},
+		oneditprepare: function() {
+						
+			function loadConfig(node) {
+                                
+                $.ajax({
+					url: "garage_devices/" + node.id,
+					type: "GET",
+					contentType: "application/json; charset=utf-8",
+					success: function(resp){
+						//console.log("resp", resp);
+						//var flowContext = this.context().flow;
+						
+						let optionList = [];
+						optionList.push({
+							value: "",
+							label: "-------"
+						})
+						for(let i=0; i < resp.length; i++ ){
+							optionList.push(
+								{
+									value: resp[i].uuid,
+									label: resp[i].devName,
+								}
+							)
+						}
+						
+						$("#node-input-device").typedInput({type:"device", types:[{
+							value: "device",
+							multiple: true,
+							options: optionList
+						}]})
+						
+						$("#node-input-device").on("change", function(){
+							
+							if( this.value && this.value.split(",").length > 0 ){
+								//console.log("set outputs to: " + this.value.split(",").length );
+								let values = this.value.split(",");
+								let labelList = [];
+								for(let i=0; i < values.length; i++){
+									let option = optionList.filter((option) => values[i] == option.value)[0].label;
+									labelList.push(option);
+								}
+								//console.log(labelList);
+								$("#node-input-outputs").val(values.length);
+								$("#node-input-outputLabeleling").val(labelList);
+							}
+						})
+						
+						
+
+					},
+					error: function(err){
+						console.log("err", err);
+					}
+				})
+            }
+			loadConfig(this);
+
+			$("#node-input-action").typedInput({type:"action", types:[{
+				value: "action",
+				options: [
+					{ value: "state", label: "Garage State"},
+					{ value: "open", label: "Garage Open"},
+					{ value: "close", label: "Garage Close"},
+				]
+			}]})
+			
+		},		
+		paletteLabel: 'Meross Garage'
+	});
+</script>
+
+<!-- Setting design and inputs for node -->
+<script type="text/x-red" data-template-name="meross-garage">
+	<div class="form-row">
+		<label for="node-input-confignode"> Meross</label>
+		<input type="text" id="node-input-confignode">
+	</div>
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Meross Garage Node Name">
+	</div>	
+	<div class="form-row">
+		<label for="node-input-device"><i class="fa fa-tag"></i> Device</label>
+		<input type="text" id="node-input-device">
+		<input type="hidden" id="node-input-outputs"/>
+		<input type="hidden" id="node-input-outputLabeleling" >	
+	</div>	
+	<div class="form-row">
+		<label for="node-input-action"><i class="fa fa-tag"></i> Function</label>
+		<input type="text" id="node-input-action">		
+	</div>
+</script>
+
+
+<!-- Simple Help Text -->
+<script type="text/x-red" data-help-name="evohome-control">
+	<p>A node to control Meross Swiches.</p>
+</script>

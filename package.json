@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-meross-cloud",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A module to connect with Meross Cloud Services",
   "author": "Sven Kronshage",
   "license": "ISC",
@@ -13,7 +13,8 @@
     "nodes": {
       "merosslib-config": "lib/merosslib-config.js",
       "smartplug-control": "lib/smartplug-control.js",
-      "switch-control": "lib/switch-control.js"
+      "switch-control": "lib/switch-control.js",
+      "garage-control": "lib/garage-control.js"
     }
   },
   "repository": {
