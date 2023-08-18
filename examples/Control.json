@@ -32,7 +32,7 @@
         "y": 460,
         "wires": [
             [
-                "4cbe0fab4a9a0728"
+                "9e275769441bcc10"
             ]
         ]
     },
@@ -59,12 +59,48 @@
         "z": "045dfecc3bb82561",
         "confignode": "7e7d8c9e3e8a14b2",
         "name": "",
-        "device": "adlkaksdaksdjkasjkdaj2q29929999",
+        "device": "deviceId-1",
         "action": "energy",
         "outputs": 1,
-        "outputLabeleling": "SomeDevice",
+        "outputLabeleling": "Poolfilter",
         "x": 610,
         "y": 540,
+        "wires": [
+            [
+                "df2135864aadfcc2"
+            ]
+        ]
+    },
+    {
+        "id": "43fd23a0febc8d79",
+        "type": "meross-switch",
+        "z": "045dfecc3bb82561",
+        "confignode": "7e7d8c9e3e8a14b2",
+        "name": "",
+        "device": "deviceId-2",
+        "action": "off",
+        "outputs": 1,
+        "outputLabeleling": "Schuppenschalter",
+        "x": 600,
+        "y": 340,
+        "wires": [
+            [
+                "df2135864aadfcc2"
+            ]
+        ]
+    },
+    {
+        "id": "9e275769441bcc10",
+        "type": "meross-garage",
+        "z": "045dfecc3bb82561",
+        "confignode": "7e7d8c9e3e8a14b2",
+        "name": "",
+        "device": "deviceId-3",
+        "action": "close",
+        "outputs": 1,
+        "outputLabeleling": "Garage",
+        "x": 560,
+        "y": 200,
         "wires": [
             [
                 "df2135864aadfcc2"
@@ -75,7 +111,7 @@
         "id": "7e7d8c9e3e8a14b2",
         "type": "merosslib-config",
         "name": "",
-        "username": "",
-        "password": ""
+        "username": "username",
+        "password": "password"
     }
 ]
