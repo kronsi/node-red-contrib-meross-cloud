@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	RED.nodes.registerType('meross-smartplug',{
+	RED.nodes.registerType('meross-switch',{
 		category: 'MerossCloud',
 		defaults: {	
 			confignode: { value: '', type: 'merosslib-config' },
@@ -12,10 +12,10 @@
 		inputs: 1,				// set the number of inputs - only 0 or 1
 		outputs: 1,			 // set the number of outputs - 0 to n
 		outputLabels: ["stdout","stderr","rc"],
-		icon: 'smartplug.png',  // saved in icons/myicon.png
+		icon: 'switch.png',  // saved in icons/myicon.png
 		color: '#005AFF', 
 		label: function() {
-			return this.name || 'Meross Smartplug';
+			return this.name || 'Meross Switch';
 		},
 		outputLabels: function(index){
 			let label = this.outputLabeleling.split(",");
@@ -26,7 +26,7 @@
 			function loadConfig(node) {
                                 
                 $.ajax({
-					url: "smartplug_devices/" + node.id,
+					url: "switch_devices/" + node.id,
 					type: "GET",
 					contentType: "application/json; charset=utf-8",
 					success: function(resp){
@@ -83,26 +83,25 @@
 				value: "action",
 				options: [
 					{ value: "state", label: "Switch State"},
-					{ value: "energy", label: "Power consumption"},
 					{ value: "on", label: "Switch On"},
 					{ value: "off", label: "Switch Off"},
 				]
 			}]})
 			
 		},		
-		paletteLabel: 'Meross Smartplug'
+		paletteLabel: 'Meross Switch'
 	});
 </script>
 
 <!-- Setting design and inputs for node -->
-<script type="text/x-red" data-template-name="meross-smartplug">
+<script type="text/x-red" data-template-name="meross-switch">
 	<div class="form-row">
 		<label for="node-input-confignode"> Meross</label>
 		<input type="text" id="node-input-confignode">
 	</div>
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-		<input type="text" id="node-input-name" placeholder="Meross Smart Plug Node Name">
+		<input type="text" id="node-input-name" placeholder="Meross Switch Node Name">
 	</div>	
 	<div class="form-row">
 		<label for="node-input-device"><i class="fa fa-tag"></i> Device</label>
@@ -119,5 +118,5 @@
 
 <!-- Simple Help Text -->
 <script type="text/x-red" data-help-name="evohome-control">
-	<p>A node to control Meross Smart Plug.</p>
+	<p>A node to control Meross Swiches.</p>
 </script>
