@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-meross-cloud",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A module to connect with Meross Cloud Services",
   "author": "Sven Kronshage",
   "license": "ISC",
@@ -22,7 +22,7 @@
     "url": "https://github.com/kronsi/node-red-contrib-meross-cloud.git"
   },
   "dependencies": {
-    "@kronsi/meross-cloud": "^2.4.5",
+    "@kronsi/meross-cloud": "^2.4.6",
     "request": "^2.75.0"
   },
   "engines": {
